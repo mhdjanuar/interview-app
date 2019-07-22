@@ -16,13 +16,19 @@ class Register extends Component {
   }
 
    handleSubmit = () =>{
-    // const data = {
-    //   username: this.state.username,
-    //   email: this.state.email,
-    //   password: this.state.no_hp
-    // }
-    // this.props.register(data,this.props.navigation)
-    this.props.navigation.navigate('Home')
+    const data = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.no_hp
+    }
+    this.props.register(data) 
+
+    if(this.state.username == '' || this.state.email == '' || this.state.no_hp == ''){
+      alert('Tidak boleh kosong')
+    }
+    else{
+      this.props.navigation.navigate('Home')
+    }
 
   }
 
@@ -47,6 +53,7 @@ class Register extends Component {
           <Button style={{ marginTop:20 }} onPress={()=>this.handleSubmit()} full info>
             <Text>Silahkan Masuk</Text>
           </Button>
+          {/* <Button onPress={()=>alert(this.props.user.userId)}><Text>cek</Text></Button> */}
         </Content>
       </Container>
     );
@@ -59,8 +66,10 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const mapStateToProps = state => ({
-  
-})
+const mapStateToProps = state => {
+  return {
+      user: state.register
+  }
+}
 
 export default connect(mapStateToProps,mapDispatchToProps)(Register)

@@ -131,7 +131,7 @@ class Question extends Component {
                                 <Text>{item.description}</Text>
                                 <Content></Content>
                                 {this.checkFormInput(item.type,item.options,item.id)}
-                                <Button title="next" onPress={()=>this.handleNext(item.id,1)} />
+                                <Button title="next" onPress={()=>this.handleNext(item.id,this.props.user.userId)} />
                            </View>
                   }
               }
@@ -143,7 +143,7 @@ class Question extends Component {
                     <Button title="finish" onPress={()=>this.handleFinish()} />
                     }
 
-                    {/* <Button title="cek" onPress={()=>this.handleCek()} /> */}
+                    {/* <Button title="cek" onPress={()=>alert(this.props.user.userId)} /> */}
             </Container>
           );
     
@@ -152,7 +152,8 @@ class Question extends Component {
 
 const mapStateToProps = state => {
     return {
-      question: state.question
+      question: state.question,
+      user: state.register
     }
   }
 

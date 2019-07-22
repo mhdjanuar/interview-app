@@ -1,7 +1,9 @@
 import * as types from './../types';
 
 const initialState = {
-    data:[]
+    userId:'',
+    isError:false,
+    isSuccses:true
 }
 
 export default function auth(state = initialState, action){
@@ -9,25 +11,25 @@ export default function auth(state = initialState, action){
         case 'SET_USER' : 
             state = {
                 ...state
-                // data:action.payload
             }
         case 'REGISTER_FULFILLED' : 
             return {
                 ...state,
-                user:'ini user behasil'
-                // data:action.payload.data   
+                isError:false,
+                isSuccses:true,
+                userId: action.payload.data.user.id
             }
         case 'REGISTER_REJECTED' : 
             return {
                 ...state,
+                isError:true,
+                isSuccses:false,
                 user:'ini user gagal'
-                // data:action.payload.data   
             }
         case 'REGISTER_PENDING' : 
             return {
                 ...state,
                 user:'ini user PENDING'
-                // data:action.payload.data   
             }
         default : 
             return state
